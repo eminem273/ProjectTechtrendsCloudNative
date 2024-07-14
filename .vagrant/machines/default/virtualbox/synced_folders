@@ -1,0 +1,1 @@
+{"rsync":{"/vagrant":{"type":"rsync","guestpath":"/vagrant","hostpath":"E:/Cloud/Cloud_Native_Application/Exercise_CloudNative/Module_1/TechTrendsProject/ProjectTechtrendsCloudNative","disabled":false,"__vagrantfile":true,"owner":"vagrant","group":"vagrant"}}}
