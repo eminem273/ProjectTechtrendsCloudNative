@@ -10,5 +10,5 @@ spec:
   ports:
   - port: {{ .Values.service.port }}
     protocol: {{ .Values.service.protocol }}
-    targetPort: 3111
+    targetPort:  {{ if .Values.service.port }} {{ .Values.service.port }} {{ else }} 3111 {{ end }}
   type: {{ .Values.service.type }}
