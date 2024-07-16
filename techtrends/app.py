@@ -47,12 +47,23 @@ def about():
 
 @app.route('/healthz')
 def healthz():
-    response = app.response_class(
-        response=json.dumps({"result":"OK - healthy"}),
-        status=200,
-        mimetype='application/json'
-    )
-    return response
+    connection = get_db_connection()
+    try:
+        connection.execute('SELECT 1 FROM posts LIMIT 1')
+        response = app.response_class(
+            response=json.dumps({"result":"ok - healthy"}),
+            status=500,
+            mimetype='application/json'
+        )
+        return response
+    except sqlite3.Error as error:
+        print(f"Error checking values in database: {error}")
+        response = app.response_class(
+            response=json.dumps({"result":"ERROR - unhealthy"}),
+            status=500,
+            mimetype='application/json'
+        )
+        return response    
 
 @app.route('/metrics')
 def metrics():
